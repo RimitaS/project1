@@ -13,39 +13,19 @@ $pass=$_POST['psw']; // get password
 $mob=$_POST['mob']; // Get mobile no
 $gen=$_POST['gen']; // get gender
 
+mysqli_query($con,"insert into UserD(emailid,mob,password,fname,lname) values('$email','$mob','$pass','$fname','$lname')");
+
 $ret=mysqli_query($con,"SELECT * FROM UserD WHERE emailid='$email'");
 $num=mysqli_fetch_array($ret);
 
-if ($num>0) {
-  $_SESSION['msg']="User Already Registered";
- }
-else {
-  mysqli_query($con,"insert into UserD(emailid,mob,password,fname,lname) values('$email','$mob','$pass','$fname','$lname')");
-  $_SESSION['msg']="User Registered Successfully";
- }
+if($num>0)
+{
+$_SESSION['msg']="User Registered successfully";
+}
+
 }
 ?>
 
-<script>
-function validateform() {
-  var psw = document.signup.psw.value;
-  var psw1 = document.signup.pswr.value;
-
-  var mob = document.signup.mob.value;
-  var mob1 = mob.toString();
-
-  if (mob1.length !== 10) {
-    alert("Mobile number must be 10 digits long.");
-    return false;
-  } else if (psw.length < 8) {
-    alert("Password must be at least 8 characters long.");
-    return false;
-  } else if (psw !== psw1) {
-    alert("Retype password doesn't match with the Password");
-    return false;
-  }
-}
-</script>
 
 <!DOCTYPE html>
 <html>
@@ -61,7 +41,7 @@ function validateform() {
     <form style="background-color:#E6E6FA" name="signup" onsubmit="return validateform()" method="post">
 
         <header>New User Submission Form</header>
-        <p style="color:red;"><?php echo $_SESSION['msg'];?><?php unset($_SESSION['msg']);?></p>
+        <p style="color:red;"><?php echo $_SESSION['msg'];?><?php echo $_SESSION['msg']="";?></p>
 
         <label for="email"><b>Email</b></label>
         <input type="email" placeholder="Enter Email" name="email" id="email" required>
@@ -83,8 +63,7 @@ function validateform() {
         <label for="pswr"><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" name="pswr" id="pswr" required>
 
-        <button type="submit" name="signup" class="registerbtn"><a href="userdetails.php">Register</a></button>
-	
+        <button type="submit" name="signup" class="registerbtn">Register</button>
 
         <p style="padding-left:50%;">Already have an account? <a href="index.php">Sign in</a>.</p>
     </form>
