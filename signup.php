@@ -13,18 +13,24 @@ $pass=$_POST['psw']; // get password
 $mob=$_POST['mob']; // Get mobile no
 $gen=$_POST['gen']; // get gender
 
-$ret=mysqli_query($con,"SELECT * FROM UserD WHERE emailid='$email'");
+$ret=mysqli_query($conn,"SELECT * FROM UserD WHERE emailid='$email'");
 $num=mysqli_fetch_array($ret);
 
 if ($num>0) {
   $_SESSION['msg']="User Already Registered";
  }
 else {
-  mysqli_query($con,"insert into UserD(emailid,mob,password,fname,lname) values('$email','$mob','$pass','$fname','$lname')");
+  mysqli_query($conn,"insert into UserD(emailid,mob,password,fname,lname) values('$email','$mob','$pass','$fname','$lname')");
   $_SESSION['msg']="User Registered Successfully";
+  $extra="index.php";
+  $host=$_SERVER['HTTP_HOST'];
+  $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
+  header("location:http://$host$uri/$extra");
+  exit();
  }
 }
 ?>
+
 
 <script>
 function validateform() {
@@ -82,8 +88,7 @@ function validateform() {
         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
         <label for="pswr"><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" name="pswr" id="pswr" required>
-
-        <button type="submit" name="signup" class="registerbtn"><a href="userdetails.php">Register</a></button>
+        <button type="submit" name="signup">SignUP</button>
 	
 
         <p style="padding-left:50%;">Already have an account? <a href="index.php">Sign in</a>.</p>
