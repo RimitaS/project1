@@ -1,10 +1,10 @@
 <?php
-define('DB_SERVER','localhost');
-define('DB_USER','rimita');
-define('DB_PASS' ,'Redhat@2025');
-define('DB_NAME', 'rimita');
+define('DB_SERVER','sql5.freemysqlhosting.net');
+define('DB_USER','sql5687820');
+define('DB_PASS' ,'8Uyrec1Dyg');
+define('DB_NAME', 'sql5687820');
 $conn = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-$mysqli = new mysqli("localhost","rimita","Redhat@2025","rimita");
+$mysqli = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 // Check connection
 if (mysqli_connect_errno())
 {

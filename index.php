@@ -41,7 +41,7 @@ else {
   <form name="login" method="post" >
   <header>Login to Test management system</header>
   <p style="color:green;"><?php echo $_SESSION['msg'];?><?php echo $_SESSION['msg']="";?></p>
-  <p style="padding-left:1%;"><b>Please Enter UserID/passwords for IIHS:</b></p>
+  <p style="padding-left:1%;"><b>Please Enter UserID/passwords for TEST:</b></p>
   <label>Username <span>*</span></label>
   <input name="username" type="text" value="" required />
   <label>Password <span>*</span></label>
